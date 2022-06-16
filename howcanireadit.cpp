@@ -22,7 +22,11 @@ HowCanIReadIt::~HowCanIReadIt()
 
 void HowCanIReadIt::on_textEdit_textChanged()
 {
+    ui->textEdit_2->setText("");
     QString qwords = ui->textEdit->toPlainText();
+    if (qwords.isEmpty()) {
+        return;
+    }
     qDebug() << qwords;
     Py_Initialize();
     PyObject* pypinyin = PyImport_ImportModule("pypinyin");
